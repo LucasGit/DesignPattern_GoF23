@@ -5,9 +5,11 @@
 #define SINGLETON			3 ///< singleton
 #define BUILDER				4 ///< builder
 #define PROTOTYPE			5 ///< prototype
+#define BRIDGE				6 ///< bridge
+
 
 /// active design pattern
-#define  ACTIVE_PATTERN_ID	PROTOTYPE
+#define  ACTIVE_PATTERN_ID	BRIDGE
 
 /// header file
 #if		(ACTIVE_PATTERN_ID == FACTORY)
@@ -20,6 +22,8 @@
 #include "Builder/Director.h"
 #elif	(ACTIVE_PATTERN_ID == PROTOTYPE)
 #include "Prototype/Prototype.h"
+#elif	(ACTIVE_PATTERN_ID == BRIDGE)
+#include "Bridge/Abstraction.h"
 #endif
 
 /// main function
@@ -54,7 +58,11 @@ int main()
 #elif	(ACTIVE_PATTERN_ID == PROTOTYPE)
 	CPrototype *p1 = new CConctetePrototype();
 	CPrototype *p2 = p1->Clone();
+#elif	(ACTIVE_PATTERN_ID == BRIDGE)
+	CAstractionImp		   *pAbsImp = new CConcreteAbstrationImpA();
+	CRefinedAbsctration *pRefineAbs = new CRefinedAbsctration(pAbsImp);
 
+	pRefineAbs->Operation();
 #endif
 
 	return 0;
